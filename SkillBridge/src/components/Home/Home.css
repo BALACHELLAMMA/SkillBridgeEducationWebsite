@@ -1,0 +1,26 @@
+@import 'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap';
+* {
+  font-family: "Be Vietnam Pro";
+}
+
+.explore_courses_button {
+  background-color: orange;
+}
+
+@media (max-width: 768px) {
+  .hero_section_heading h1 {
+    font-size: 1rem;
+  }
+  .hero_section_heading #lightining_icon {
+    width: 30px;
+  }
+  .card_container {
+    overflow-y: scroll;
+  }
+  .card_container .card-img {
+    width: 100px;
+  }
+  .card_container .img_container {
+    border-right: 1px solid rgb(203, 200, 200);
+  }
+}/*# sourceMappingURL=Home.css.map */

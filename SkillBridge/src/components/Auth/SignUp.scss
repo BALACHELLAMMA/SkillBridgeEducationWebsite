@@ -1,0 +1,58 @@
+@import "../Scss/main.scss";
+body{
+    background-color: #F1F1F3;
+}
+
+.main_container {
+
+    .testimonial_description p,
+    .comments_container  p {
+        color: #646363;
+    }
+}
+
+.profile_container {
+    background-color: #FCFCFD;
+
+    .profile > p{
+        color: black;
+        font-weight: bold;
+    }
+
+    .read_more_button{
+        background-color: #f0f0f4fa;
+    }
+}
+
+form {
+    
+    .form-control,
+    .form-control:focus,
+    .password_container{    
+        background-color: #F7F7F8;
+        padding: 5px;
+    }
+
+    .terms_of_use,
+    .privacy_policy{
+        color:#646363
+    }
+
+    .sign_up_submit_button {
+        background-color: $orange;
+    }
+    
+    .google_sign_up_button {
+        background-color: $antiFlashWhite;         
+    }
+
+    .show_hide_icon{
+        height: 20px;
+        width:20px;
+    }
+
+    .upright_arrow{
+       rotate: 320deg;
+    }
+}
+

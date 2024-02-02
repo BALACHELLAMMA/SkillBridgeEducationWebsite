@@ -1,0 +1,13 @@
+@import "../../Scss/main.scss";
+
+.see_all_faq_button{
+    width: 150px;
+}
+.open_close_button{
+    width: 20px;
+    height: 30px;
+    
+    .close_open_icon{
+        background-color:$orange95;
+    }
+}

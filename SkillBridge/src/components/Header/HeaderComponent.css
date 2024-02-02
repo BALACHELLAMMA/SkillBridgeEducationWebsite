@@ -1,0 +1,29 @@
+@import 'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap';
+* {
+  font-family: "Be Vietnam Pro";
+}
+
+.header .topBanner {
+  background-color: orange;
+}
+
+
+
+.auth-link {
+  padding: 8px;
+  margin: 4px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.active-link {
+  background-color: orange;
+  color: white;
+}
+
+.inactive-link {
+  background-color: transparent;
+  color: black;
+}
+
+

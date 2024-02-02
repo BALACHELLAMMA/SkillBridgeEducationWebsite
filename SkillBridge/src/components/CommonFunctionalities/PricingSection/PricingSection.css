@@ -1,0 +1,26 @@
+@import 'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap';
+* {
+  font-family: "Be Vietnam Pro";
+}
+
+.monthly_yearly_button .monthly_button {
+  background-color: orange;
+}
+.monthly_yearly_button .yearly_button {
+  background-color: white;
+}
+
+.plan_container .plan_type {
+  background-color: #f8efe4;
+  border: 1px solid #f5ddbf;
+}
+.plan_container .price {
+  font-size: 40px;
+}
+.plan_container .get_started_button {
+  background-color: orange;
+  border-radius: 0px 0px 5px 5px;
+}
+.plan_container .available_features_container {
+  border-radius: 5px 5px 0px 0px;
+}/*# sourceMappingURL=PricingSection.css.map */

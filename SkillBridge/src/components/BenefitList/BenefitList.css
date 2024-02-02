@@ -1,0 +1,10 @@
+@import 'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap';
+* {
+  font-family: "Be Vietnam Pro";
+}
+
+@media (min-width: 768px) {
+  .benefit_sub_container {
+    width: 32%;
+  }
+}/*# sourceMappingURL=BenefitSection.css.map */

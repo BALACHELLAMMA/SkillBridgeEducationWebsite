@@ -1,0 +1,12 @@
+@import 'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap';
+* {
+  font-family: "Be Vietnam Pro";
+}
+
+.courseImage {
+  width: 100%;
+}
+
+.duration_text {
+  font-size: 12px;
+}/*# sourceMappingURL=Course.css.map */
