@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { storage } from "../../appwriteConfig";
 import { useSelector } from "react-redux";
-import Account from "../Account/Account";
 
 
 function HeaderComponent() {
@@ -90,9 +89,12 @@ function HeaderComponent() {
           </div>
           <div className="login_signup_toggle_container d-flex gap-2">
             {user ? (
-              <Link to={'/account'} className="text-decoration-none">
-                  <FontAwesomeIcon icon={faCircleUser} className="text-black w-100 pt-3" />
-              </Link>
+              <button
+              onClick={logoutUser}
+              className="logout_button  rounded border-0 text-white p-2"
+            >
+              Logout
+            </button>
             ) : (
               <div className="d-flex gap-2">
                 <Link

@@ -23,14 +23,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
-
           <Route path="/home" element={<HomePage/>} />
           <Route path="/course" element={<CoursePage/>}/>
           <Route path="course/courseOpenPage" element={<CourseOpenPage/>}/>
           <Route path="/about" element={<AboutPage/>}/>
           <Route path="/pricing" element={<PricingPage/>}/>
           <Route path="/contact" element={<ContactPage/>}/> 
-          <Route path="/account" element={<Account/>}/>
         </Routes>
         <Footer/>
       </AuthProvider>
