@@ -41,10 +41,14 @@ const Course = () => {
     courseImage: string,
     courseTopics: object
   ) => {
+    console.log("called", courseImage);
+    
     navigate("/course/courseOpenPage", {
       state: [title, courseContent, courseImage, courseTopics],
     });
   };
+
+
 
   const renderCourseList = courseContentDocuments.documents?.map((course) => {
     return (
@@ -63,7 +67,7 @@ const Course = () => {
                 handleOpenCourse(
                   course?.title,
                   course?.content,
-                  course?.firstImage,
+                  `../../src/assets/images/courseImages/${course.firstImage}`,
                   [
                     course?.firstTopic,
                     course?.secondTopic,
@@ -82,7 +86,7 @@ const Course = () => {
           <div className="d-flex row ">
             <img
               src={`../../src/assets/images/courseImages/${course.firstImage}`}
-              alt="poda"
+            
               className="col-4 "
             />
             <img

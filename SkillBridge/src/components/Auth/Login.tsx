@@ -7,10 +7,13 @@ import { account, storage } from "../../appwriteConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faArrowRight, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import TestimonialSliderComponent from "../TestimonialSection/TestimonialSliderComponent";
+import { useDispatch } from "react-redux";
+import { setLoginFormData } from "../../redux/action";
 
 
 function Login() {
   const { user, loginUser } = useAuth();
+  const loginDispatch = useDispatch();
   const loginForm = useRef(null);
   const [showPassword, setShowPassword] = useState(false);
   const bucketId = "Images";
@@ -21,8 +24,10 @@ function Login() {
     const password = loginForm.current.password.value;
 
     const userInfo = { email, password };
-
+    console.log(userInfo);
+    
     loginUser(userInfo);
+    loginDispatch(setLoginFormData(userInfo));
   };
 
   const handleForgotPassword = async () => {

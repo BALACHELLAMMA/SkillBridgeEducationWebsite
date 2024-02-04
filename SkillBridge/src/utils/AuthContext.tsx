@@ -50,7 +50,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       let accountDetails = await account.get();
       setUser(accountDetails);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error(error);
     }
@@ -103,7 +103,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       let accountDetails = await account.get();
       setUser(accountDetails);
-      navigate("/signUp");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

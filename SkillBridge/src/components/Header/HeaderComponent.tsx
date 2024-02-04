@@ -3,10 +3,15 @@ import { useAuth } from "../../utils/AuthContext";
 
 import "./HeaderComponent.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { storage } from "../../appwriteConfig";
+import { useSelector } from "react-redux";
+import Account from "../Account/Account";
+
 
 function HeaderComponent() {
+  const loginFormData = useSelector((state) => state.formData.loginFormData);
+
   const { user, logoutUser } = useAuth();
   const location = useLocation();
 
@@ -50,37 +55,32 @@ function HeaderComponent() {
                 <li className="nav-item">
                   <Link
                     to="/home"
-                    className={`nav-link ${
-                      location.pathname === "/home" ? "active" : ""
-                    } `}
+                    className={`nav-link ${location.pathname === "/home" ? "active" : ""
+                      } `}
                   >
                     Home
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/course"  className={`nav-link ${
-                      location.pathname === "/course" ? "active" : ""
+                  <Link to="/course" className={`nav-link ${location.pathname === "/course" ? "active" : ""
                     } `}>
                     Courses
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/about" className={`nav-link ${
-                      location.pathname === "/about" ? "active" : ""
+                  <Link to="/about" className={`nav-link ${location.pathname === "/about" ? "active" : ""
                     } `}>
                     About Us
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/pricing"  className={`nav-link ${
-                      location.pathname === "/pricing" ? "active" : ""
+                  <Link to="/pricing" className={`nav-link ${location.pathname === "/pricing" ? "active" : ""
                     } `}>
                     Pricing
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/contact"  className={`nav-link ${
-                      location.pathname === "/contact" ? "active" : ""
+                  <Link to="/contact" className={`nav-link ${location.pathname === "/contact" ? "active" : ""
                     } `}>
                     Contact Us
                   </Link>
@@ -90,27 +90,22 @@ function HeaderComponent() {
           </div>
           <div className="login_signup_toggle_container d-flex gap-2">
             {user ? (
-              <button
-                onClick={logoutUser}
-                className="logout_button  rounded border-0 text-white p-2"
-              >
-                Logout
-              </button>
+              <Link to={'/account'} className="text-decoration-none">
+                  <FontAwesomeIcon icon={faCircleUser} className="text-black w-100 pt-3" />
+              </Link>
             ) : (
               <div className="d-flex gap-2">
                 <Link
                   to="/signUp"
-                  className={`signupLink p-2 ${
-                    location.pathname === "/signUp" ? "active" : ""
-                  }`}
+                  className={`signupLink p-2 ${location.pathname === "/signUp" ? "active" : ""
+                    }`}
                 >
                   Sign Up
                 </Link>
                 <Link
                   to="/"
-                  className={`loginLink p-2 ${
-                    location.pathname !== "/signUp" ? "active" : ""
-                  }`}
+                  className={`loginLink p-2 ${location.pathname !== "/signUp" ? "active" : ""
+                    }`}
                 >
                   Login
                 </Link>
@@ -125,7 +120,7 @@ function HeaderComponent() {
               aria-controls="offcanvasNavbar"
               aria-label="Toggle navigation"
             >
-              <img src={`${storage.getFilePreview('Images','65b8dab91c7ff91617f8').href}`} alt="hamburger"/>
+              <img src={`${storage.getFilePreview('Images', '65b8dab91c7ff91617f8').href}`} alt="hamburger" />
             </button>
           </div>
         </nav>
