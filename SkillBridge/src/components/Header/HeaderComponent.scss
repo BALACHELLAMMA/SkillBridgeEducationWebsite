@@ -9,8 +9,8 @@
     .signupLink.active,
     .loginLink.active
     {
-        background-color: orange;
-        color: #ffff;
+        background-color: $orange;
+        color: $white;
     }
 
   
@@ -19,7 +19,7 @@
         display: block;
         text-decoration: none;
         background-color: transparent;
-        color: #000;
+        color: $black;
         padding: 5px;
         border-radius: 5px;
     }
@@ -28,7 +28,7 @@
     .navbar .navbar-nav .nav-link.active
     {
     
-        background-color:#F1F1F3;
+        background-color:$antiFlashWhite;
     }
 
 }

@@ -9,7 +9,7 @@
             display: block;
             text-decoration: none;
             background-color: transparent;
-            color: #000;
+            color: $black;
             padding: 10px;
             border-radius: 5px;
     }
@@ -17,8 +17,8 @@
     .monthly_Link.active,
     .yearly_Link.active
     {
-        background-color: orange;
-        color: #ffff;
+        background-color: $orange;
+        color: $white;
     }
       
 
