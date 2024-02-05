@@ -9,7 +9,7 @@ import CourseSection from "../Course/CourseSection";
 
 function Home() {
   return (
-    <div className="" id="home">
+    <div  id="home">
       <section
         className="hero_section container 
       d-flex flex-column align-items-center justify-content-center"

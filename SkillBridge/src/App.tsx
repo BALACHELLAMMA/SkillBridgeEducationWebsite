@@ -10,7 +10,6 @@ import HomePage from "./pages/Home/Home";
 import CoursePage from "./pages/Course/CoursePage";
 import AboutPage from "./pages/About/About";
 import ContactPage from "./pages/Contact/Contact";
-import Account from "./components/Account/Account";
 import CourseOpenPage from "./components/Course/CourseOpenPage";
 
 
