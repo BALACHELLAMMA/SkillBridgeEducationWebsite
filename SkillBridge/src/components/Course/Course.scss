@@ -4,18 +4,15 @@
    width:100%;
 }
 
-.duration_container{
-  width: 120px;
-}
-
 .lesson_text{
   font-size: 14px;
 }
-.duration_text{
-    font-size: 12px;
-}
 
 .duration_container{
-    height: 40px;
-    width: 140px;
+  height: 40px;
+  width: 120px;
+  
+  .duration_text{
+    font-size: 13px;
+  }
 }

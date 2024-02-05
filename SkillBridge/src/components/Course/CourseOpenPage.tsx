@@ -94,8 +94,8 @@ function CourseOpenPage() {
                       <p className="text-secondary">Lesson 01</p>
                     </div>
                     <div className="duration_container border bg-light rounded d-flex align-items-start gap-2 p-2 ">
-                      <FontAwesomeIcon icon={faClock} />
-                      <p className="duration_text">{course?.firstLessonDuration}</p>
+                      <FontAwesomeIcon icon={faClock} className="clock_icon"/>
+                      <p className="duration_text ">{course?.firstLessonDuration}</p>
                     </div>
                   </div>
                   <div className="content_container border d-flex flex-wrap flex-md-row flex-column justify-content-md-between p-3 rounded">
