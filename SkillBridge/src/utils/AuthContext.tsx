@@ -30,16 +30,13 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const navigate = useNavigate();
-  // const [loading,setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    // setLoading(false);
     checkUserStatus();
   }, []);
 
   const loginUser = async (userInfo: UserInfo) => {
-    // setLoading(true);
     console.log("userInfo", userInfo);
     try {
       let response = await account.createEmailSession(
@@ -54,7 +51,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-    // setLoading(false);
   };
   const logoutUser = async () => {
     await account.deleteSession("current");
@@ -64,7 +60,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const registerUser = async (userInfo: UserInfo) => {
-    // setLoading(true);
     try {
       let response = await account.create(
         ID.unique(),
@@ -73,33 +68,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         userInfo.name
       );
       console.log(response);
-      // await account.createEmailSession(userInfo.email, userInfo.password);
-
-      // let promise = account.createVerification("http://localhost:5173/");
-
-      // promise.then(
-      //   function (response) {
-      //     console.log(response); // Success
-      //   },
-      //   function (error) {
-      //     console.log(error); // Failure
-      //   }
-      // );
-
-      // const urlParams = new URLSearchParams(window.location.search);
-      // const userId = urlParams.get("userId");
-      // const secret = urlParams.get("secret");
-
-      // let updatePromise = account.updateVerification(userId, secret);
-
-      // updatePromise.then(
-      //   function (response) {
-      //     console.log(response); // Success
-      //   },
-      //   function (error) {
-      //     console.log(error); // Failure
-      //   }
-      // );
+      
 
       let accountDetails = await account.get();
       setUser(accountDetails);
@@ -107,7 +76,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-    // setLoading(false);
   };
 
   const checkUserStatus = async () => {
@@ -117,7 +85,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-    // setLoading(false);
   };
   const contextData: AuthContextProps = {
     user,

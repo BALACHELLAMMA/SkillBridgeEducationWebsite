@@ -39,7 +39,6 @@ function CourseOpenPage() {
 
   const location = useLocation();
   const courseDetails = location.state;
-  // console.log(courseDetails[0]);
   return (
     <div>
       {(descriptionDocument && courseDetails[0] === 'UI/UX Design') ? (

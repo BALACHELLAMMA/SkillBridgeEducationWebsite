@@ -10,29 +10,5 @@ export const account = new Account(client);
 export const databases = new Databases(client);
 
 export const storage = new Storage(client);
-// const collection = await databases.createCollection('uiux_design_course', {
-//     'name': 'uiux_design_course',
-//     'schema': {
-//       '$id': 'uiux_design_course',
-//       'type': 'collection',
-//       'rules': {
-//         'heading': {
-//           'type': 'string'
-//         },
-//         'content': {
-//           'type': 'array',
-//           'items': {
-//             'type': 'array',
-//             'items': [
-//               { 'type': 'string' },
-//               { 'type': 'string' },
-//               { 'type': 'string' }
-//             ]
-//           }
-//         }
-//       }
-//     }
-//   });
-
 
 export default client;

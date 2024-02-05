@@ -10,9 +10,8 @@ import { databases } from "../../appwriteConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setContactFormData } from "../../redux/action";
-import { ContactFormState } from "../../redux/reducer";
 
 interface FormData {
   firstnameInput: string;
@@ -27,7 +26,6 @@ interface FormData {
 
 function Contact() {
   const contactDispatch = useDispatch();
-  // const {contactFormData} = useSelector((state :RootState)=> state.contactFormData);
   const [descriptionDocument, setDescriptionDocument] = useState<Object>({});
 
   useEffect(() => {
