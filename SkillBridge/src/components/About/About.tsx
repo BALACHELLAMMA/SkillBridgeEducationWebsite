@@ -53,7 +53,7 @@ const About = () => {
         <div className="col">
           <div className="about_content_card card border-0 bg-white p-3 d-flex gap-2">
             <img src={`../src/assets/images/aboutImages/${aboutContent?.image}`} alt=".." />
-            <h6>{aboutContent?.title}</h6>
+            <h6 className="fw-bold">{aboutContent?.title}</h6>
             <p>{aboutContent?.content}</p>
           </div>
         </div>
@@ -102,7 +102,7 @@ const About = () => {
               <span className="text-warning">Together</span>, let's shape the
               future of digital innovation
             </h2>
-            <p>
+            <p className="text-secondary">
               Join us on this exciting learning journey and unlock your
               potential in design and development.
             </p>
