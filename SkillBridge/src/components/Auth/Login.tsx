@@ -1,4 +1,4 @@
-import "./SignUp.scss";
+import "./Auth.scss";
 import { useAuth } from "../../utils/AuthContext";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -66,15 +66,15 @@ function Login() {
             ref={loginForm}
             className=" col-md-5  order-first order-md-1 bg-white d-flex flex-column gap-3 p-4 rounded"
           >
-            <span className="h3 text-center">
-              <b>Login</b>
+            <span className="h3 text-center fw-bold">
+              Login
             </span>
             <p className="create_account text-center">
               Welcome back! please login to your account.
             </p>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail">
-                <b>Email</b>{" "}
+              <label htmlFor="exampleInputEmail fw-bold">
+                Email
               </label>
               <input
                 type="email"

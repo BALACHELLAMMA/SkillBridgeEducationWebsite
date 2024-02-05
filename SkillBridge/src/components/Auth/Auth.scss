@@ -29,13 +29,13 @@ form {
     .form-control,
     .form-control:focus,
     .password_container{    
-        background-color: #F7F7F8;
+        background-color: $inputFieldBg;
         padding: 5px;
     }
 
     .terms_of_use,
     .privacy_policy{
-        color:#646363
+        color:$formLink;
     }
 
     .sign_up_submit_button {

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../utils/AuthContext";
-import "./SignUp.scss";
+import "./Auth.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
@@ -65,8 +65,8 @@ function SignUp() {
               Create an account to unlock exclusive features.
             </p>
             <div className="form-group">
-              <label htmlFor="exampleInputName">
-                <b>Name</b>{" "}
+              <label htmlFor="exampleInputName" className="fw-bold">
+                Name
               </label>
               <input
                 type="text"
@@ -122,11 +122,11 @@ function SignUp() {
               <label>
                 I agree with
                 <Link to="#" className="terms_of_use ">
-                  Terms of Use
+                   Terms of Use
                 </Link>
                 and
                 <Link to="#" className="privacy_policy">
-                  Privacy Policy
+                   Privacy Policy
                 </Link>
               </label>
             </div>
