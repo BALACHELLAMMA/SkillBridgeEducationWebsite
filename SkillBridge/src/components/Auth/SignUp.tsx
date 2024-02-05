@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef} from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../utils/AuthContext";
 import "./Auth.scss";
@@ -8,15 +8,14 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import { storage } from "../../appwriteConfig";
+import { account, storage } from "../../appwriteConfig";
 import TestimonialSliderComponent from "../TestimonialSection/TestimonialSliderComponent";
-// import useBooleanState from "../CommonFunctionalities/CustomHook/useToggleState";
+import useBooleanState from "../CommonFunctionalities/CustomHook/useToggleState";
 
 function SignUp() {
   const { registerUser } = useAuth();
   const registerForm = useRef(null);
-  // const [showPassword, setShowPassword] = useBooleanState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useBooleanState(false);
   const bucketId = "Images";
 
   const handleSubmit = (e) => {
@@ -31,12 +30,12 @@ function SignUp() {
     registerUser(userInfo);
   };
 
-  // const googleSignUp = (e: any) => {
-  //    e.preventDefault();
-  //    account.createOAuth2Session('google',
-  //    'http://localhost:5173/'
-  //    )
-  // };
+  const googleSignUp = (e: any) => {
+     e.preventDefault();
+     account.createOAuth2Session('google',
+     'http://localhost:5173/home'
+     )
+  };
 
   return (
     <div className="bg-light ">
@@ -107,7 +106,7 @@ function SignUp() {
                 />
                 <button
                   className="border-0 bg-transparent"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={setShowPassword}
                 >
                   {showPassword ? (
                     <FontAwesomeIcon icon={faEyeSlash} />
@@ -144,7 +143,7 @@ function SignUp() {
             <button
               type="submit"
               className="google_sign_up_button border-0 rounded w-100 mt-2 p-3"
-              // onClick={(e) => googleSignUp(e)}
+              onClick={(e) => googleSignUp(e)}
             >
               <img
                 className="pe-3"

@@ -38,11 +38,11 @@ form {
         color:$formLink;
     }
 
-    .sign_up_submit_button {
+    .sign_up_submit_button , .login_submit_button{
         background-color: $orange;
     }
     
-    .google_sign_up_button {
+    .google_sign_up_button, .google_login_button {
         background-color: $antiFlashWhite;         
     }
 

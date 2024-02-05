@@ -1,6 +1,6 @@
 import "./Auth.scss";
 import { useAuth } from "../../utils/AuthContext";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { account, storage } from "../../appwriteConfig";
@@ -9,13 +9,14 @@ import {  faArrowRight, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-ic
 import TestimonialSliderComponent from "../TestimonialSection/TestimonialSliderComponent";
 import { useDispatch } from "react-redux";
 import { setLoginFormData } from "../../redux/action";
+import useBooleanState from "../CommonFunctionalities/CustomHook/useToggleState";
 
 
 function Login() {
   const { user, loginUser } = useAuth();
   const loginDispatch = useDispatch();
   const loginForm = useRef(null);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useBooleanState(false);
   const bucketId = "Images";
 
   const handleSubmit = (e: any) => {
@@ -30,16 +31,7 @@ function Login() {
     loginDispatch(setLoginFormData(userInfo));
   };
 
-  const handleForgotPassword = async () => {
-    try {
-      await account.createRecovery(
-        loginForm.current.email.value,
-        "/resetPassword"
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  };
+ 
 
   const googleSignIn = (e: any) => {
     e.preventDefault();
@@ -101,7 +93,7 @@ function Login() {
                 />
                 <button
                   className="border-0 bg-transparent"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={setShowPassword}
                 >
                   {showPassword ? (
                     <FontAwesomeIcon icon={faEyeSlash} />
@@ -113,8 +105,7 @@ function Login() {
             </div>
             <div className="form-group d-flex gap-2 justify-content-end ">
               <Link
-                to="/forgotPassword"
-                onClick={handleForgotPassword}
+                to=""
                 className="forgot_password text-secondary text-decoration-none"
               >
                 forgot password ?
@@ -126,7 +117,7 @@ function Login() {
             </div>
             <button
               type="submit"
-              className="sign_up_submit_button border-0 rounded w-100 text-white mb-2 p-3"
+              className="login_submit_button border-0 rounded w-100 text-white mb-2 p-3"
             >
               Login
             </button>
@@ -137,7 +128,7 @@ function Login() {
             </div>
             <button
               type="submit"
-              className="google_sign_up_button border-0 rounded w-100 mt-2 p-3"
+              className="google_login_button border-0 rounded w-100 mt-2 p-3"
               onClick={(e) => googleSignIn(e)}
             >
               <img
