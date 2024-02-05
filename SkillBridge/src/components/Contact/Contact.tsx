@@ -26,7 +26,7 @@ interface FormData {
 
 function Contact() {
   const contactDispatch = useDispatch();
-  const [descriptionDocument, setDescriptionDocument] = useState<Object>({});
+  const [descriptionDocument, setDescriptionDocument] = useState<any>({});
 
   useEffect(() => {
     const fetchDescription = async () => {
@@ -38,7 +38,9 @@ function Contact() {
           "2"
         );
 
-        setDescriptionDocument(descriptionResponse);
+        if(descriptionResponse){
+          setDescriptionDocument(descriptionResponse);
+        }
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -115,7 +117,6 @@ function Contact() {
       sendMail(contactForm);
       contactDispatch(setContactFormData(contactForm));
       toast.success("Submitted Successfully");
-      toast.update(`Got Redux Value${contactFormData}` );
 
     } catch (error) {
       console.error(error);
