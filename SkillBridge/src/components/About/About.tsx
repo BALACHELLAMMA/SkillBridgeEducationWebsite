@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import "./About.scss";
 import { databases, storage } from "../../appwriteConfig";
-
+interface AboutDocumentFieldType{
+  title:string;
+  image:string;
+  content:string;
+}
 const About = () => {
-  const [descriptionDocument, setDescriptionDocument] = useState<Object>({});
-  const [achievementDocument, setAchievementDocument] = useState<Object>({
+  const [descriptionDocument, setDescriptionDocument] = useState<any>({});
+  const [achievementDocument, setAchievementDocument] = useState<any>({
     documents: []
   });
-  const [goalDocument, setGoalDocument] = useState<Object>({
+  const [goalDocument, setGoalDocument] = useState<any>({
     documents: []
   });
 
@@ -24,10 +28,16 @@ const About = () => {
         const achievementDataResponse = await databases.listDocuments("65a0d58f05d18f1fd844", "AchievementDataCollection");
         const goalDataResponse = await databases.listDocuments("65a0d58f05d18f1fd844", "GoalDataCollection");
 
+        if(descriptionResponse){
+          setDescriptionDocument(descriptionResponse);
+        }
 
-        setDescriptionDocument(descriptionResponse);
-        setAchievementDocument(achievementDataResponse);
-        setGoalDocument(goalDataResponse);
+        if(achievementDataResponse){
+          setAchievementDocument(achievementDataResponse);
+        }
+        if(goalDataResponse){
+          setGoalDocument(goalDataResponse);
+        }
 
       } catch (error) {
         console.error("List documents error : ", error);
@@ -37,8 +47,8 @@ const About = () => {
   }, []);
 
 
-  const renderAboutContent = (aboutContentDocuments: object) => {
-    const aboutContent = aboutContentDocuments.documents?.map((aboutContent) => {
+  const renderAboutContent = (aboutContentDocuments: any) => {
+    const aboutContent = aboutContentDocuments.documents?.map((aboutContent:AboutDocumentFieldType) => {
       return (
         <div className="col">
           <div className="about_content_card card border-0 bg-white p-3 d-flex gap-2">

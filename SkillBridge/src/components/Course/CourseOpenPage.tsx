@@ -8,9 +8,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 
+interface CourseSyllabusDocumentFieldType{
+  id:number;
+  firstLesson:string;
+  secondLesson:string;
+  thirdLesson:string;
+  firstLessonDuration:string;
+  secondLessonDuration:string;
+  thirdLessonDuration:string;
+}
+
 function CourseOpenPage() {
-  const [descriptionDocument, setDescriptionDocument] = useState<Object>({});
-  const [courseSyllabusDocuments, setCourseSyllabusDocuments] = useState<Object>({
+  const [descriptionDocument, setDescriptionDocument] = useState<any>({});
+  const [courseSyllabusDocuments, setCourseSyllabusDocuments] = useState<any>({
     documents: [],
   });
   useEffect(() => {
@@ -28,8 +38,14 @@ function CourseOpenPage() {
           "individualCourseSyllabusCollection",
           [Query.orderAsc("id")]
         );
-        setCourseSyllabusDocuments(courseSyllabusResponse);
-        setDescriptionDocument(descriptionResponse);
+        if(courseSyllabusResponse){
+          setCourseSyllabusDocuments(courseSyllabusResponse);
+        }
+
+        if(descriptionResponse){
+          setDescriptionDocument(descriptionResponse);
+        }
+
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -64,7 +80,7 @@ function CourseOpenPage() {
 
       <div className="container mt-5 mb-5">
         <div className="row row-cols-1 row-cols-md-2 g-3">
-          {courseSyllabusDocuments?.documents.map((course) => {
+          {courseSyllabusDocuments?.documents.map((course:CourseSyllabusDocumentFieldType) => {
             return (
               <div className="col ">
                 <div className="card border-0 bg-white p-3 d-flex gap-2">

@@ -3,13 +3,11 @@ import { useAuth } from "../../utils/AuthContext";
 
 import "./HeaderComponent.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { storage } from "../../appwriteConfig";
-import { useSelector } from "react-redux";
 
 
 function HeaderComponent() {
-  const loginFormData = useSelector((state) => state.formData.loginFormData);
 
   const { user, logoutUser } = useAuth();
   const location = useLocation();
@@ -90,11 +88,11 @@ function HeaderComponent() {
           <div className="login_signup_toggle_container d-flex gap-2">
             {user ? (
               <button
-              onClick={logoutUser}
-              className="logout_button  rounded border-0 text-white p-2"
-            >
-              Logout
-            </button>
+                onClick={logoutUser}
+                className="logout_button  rounded border-0 text-white p-2"
+              >
+                Logout
+              </button>
             ) : (
               <div className="d-flex gap-2">
                 <Link

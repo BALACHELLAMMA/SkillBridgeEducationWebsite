@@ -2,13 +2,31 @@ import { Query } from "appwrite";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { databases } from "../../appwriteConfig";
+interface CourseDocumentFieldType {
+  id: number;
+  title: string;
+  content: string;
+  difficultyLevel: string;
+  instructor: string;
+  duration: string;
+  firstTopic: string;
+  secondTopic: string;
+  thirdTopic: string;
+  fourthTopic: string;
+  fifthTopic: string;
+  firstImage: string;
+  secondImage: string;
+  thirdImage: string;
+  fourthImage: string;
+  fifthImage: string;
 
+}
 const Course = () => {
-  const [courseContentDocuments, setCourseContentDocuments] = useState<Object>({
+  const [courseContentDocuments, setCourseContentDocuments] = useState<any>({
     documents: [],
   });
-  const [descriptionDocument, setDescriptionDocument] = useState<Object>({});
-    
+  const [descriptionDocument, setDescriptionDocument] = useState<any>({});
+
 
   useEffect(() => {
     const fetchCourseData = async () => {
@@ -25,8 +43,14 @@ const Course = () => {
           "4"
         );
 
-        setCourseContentDocuments(courseContentResponse);
-        setDescriptionDocument(descriptionResponse);
+        if (courseContentResponse) {
+          setCourseContentDocuments(courseContentResponse);
+        }
+
+        if (descriptionResponse) {
+          setDescriptionDocument(descriptionResponse);
+        }
+        
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -42,7 +66,7 @@ const Course = () => {
     courseTopics: object
   ) => {
     console.log("called", courseImage);
-    
+
     navigate("/course/courseOpenPage", {
       state: [title, courseContent, courseImage, courseTopics],
     });
@@ -50,7 +74,7 @@ const Course = () => {
 
 
 
-  const renderCourseList = courseContentDocuments.documents?.map((course) => {
+  const renderCourseList = courseContentDocuments.documents?.map((course: CourseDocumentFieldType) => {
     return (
       <section
         className="course_section container bg-white  p-3 mt-3 mb-3 rounded d-flex flex-column
@@ -86,7 +110,7 @@ const Course = () => {
           <div className="d-flex row ">
             <img
               src={`../../src/assets/images/courseImages/${course.firstImage}`}
-            
+
               className="col-4 "
             />
             <img
@@ -152,8 +176,6 @@ const Course = () => {
       ) : (
         ""
       )}
-
-
 
       {renderCourseList}
     </div>

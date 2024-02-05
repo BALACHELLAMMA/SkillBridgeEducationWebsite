@@ -4,7 +4,7 @@ import PricingSection from "../../components/CommonFunctionalities/PricingSectio
 import { databases } from "../../appwriteConfig";
 
 function PricingPage() {
-  const [descriptionDocument, setDescriptionDocument] = useState<object>({});
+  const [descriptionDocument, setDescriptionDocument] = useState<any>({});
 
   useEffect(() => {
     const fetchPricingData = async () => {
@@ -14,7 +14,9 @@ function PricingPage() {
           "DescriptionDataCollection",
           "1"
         );
-        setDescriptionDocument(descriptionResponse);
+        if (descriptionResponse) {
+          setDescriptionDocument(descriptionResponse);
+        }
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -25,16 +27,16 @@ function PricingPage() {
   console.log(descriptionDocument)
   return (
     <div>
-       {descriptionDocument && (
-           <section className="description_section container mt-5 mb-5 border-bottom">
-           <div className="description_container row ">
-             <h1 className="col-md-6 col-12">{descriptionDocument?.heading}</h1>
-             <p className="col-md-6 col-12">{descriptionDocument?.content}</p>
-           </div>
-         </section>
-       )}
-       <PricingSection/>
-       <FAQSection/>
+      {descriptionDocument && (
+        <section className="description_section container mt-5 mb-5 border-bottom">
+          <div className="description_container row ">
+            <h1 className="col-md-6 col-12">{descriptionDocument?.heading}</h1>
+            <p className="col-md-6 col-12">{descriptionDocument?.content}</p>
+          </div>
+        </section>
+      )}
+      <PricingSection />
+      <FAQSection />
     </div>
   );
 }

@@ -36,23 +36,33 @@ const faqReducer = (state: State, action: ActionType): State => {
   }
 };
 
+
+interface TestimonialDocumentFieldType{
+  testimonialId:number;
+  image:string;
+  name:string;
+  description:string;
+}
+
 const TestimonialSliderComponent = () => {
   const [slider, setSlider] = useState<Slider | null>(null);
   const [state, dispatch] = useReducer(faqReducer, initialState);
 
-  const [testimonialDocuments, setTestimonialDocuments] = useState<object>({
+  const [testimonialDocuments, setTestimonialDocuments] = useState<any>({
     documents: [],
   });
 
   useEffect(() => {
     const fetchTestimonialData = async () => {
       try {
-        const response = await databases.listDocuments(
+        const testimonialResponse = await databases.listDocuments(
           "65a0d58f05d18f1fd844",
           "TestimonialDataCollection",
           [Query.orderAsc("testimonialId")]
         );
-        setTestimonialDocuments(response);
+        if(testimonialResponse){
+          setTestimonialDocuments(testimonialResponse);
+        }
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -60,8 +70,8 @@ const TestimonialSliderComponent = () => {
     fetchTestimonialData();
   }, []);
 
-  const renderTestimonial = testimonialDocuments.documents.map(
-    (testimonial:any, index:number) => (
+  const renderTestimonial = testimonialDocuments.documents?.map(
+    (testimonial:TestimonialDocumentFieldType, index:number) => (
       <section className="comments_container bg-white rounded" key={index}>
         <p className="p-4">
           {testimonial?.description}

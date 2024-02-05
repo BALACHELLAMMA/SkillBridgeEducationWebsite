@@ -32,11 +32,18 @@ const initialState: State = {
   readMore: false,
 };
 
+interface TestimonialDocumentFieldType{
+  testimonialId:number;
+  image:string;
+  name:string;
+  description:string;
+}
+
 function TestimonialSection(): JSX.Element {
   const [viewAll, setViewAll] = useToggleState(false);
   const [state, dispatch] = useReducer(faqReducer, initialState);
 
-  const [testimonialDocuments, setTestimonialDocuments] = useState({
+  const [testimonialDocuments, setTestimonialDocuments] = useState<any>({
     documents: [],
   });
 
@@ -48,7 +55,9 @@ function TestimonialSection(): JSX.Element {
           "TestimonialDataCollection",
           [Query.orderAsc("testimonialId")]
         );
-        setTestimonialDocuments(testimonialResponse);
+        if (testimonialResponse) {
+          setTestimonialDocuments(testimonialResponse);
+        }
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -60,7 +69,8 @@ function TestimonialSection(): JSX.Element {
     const renderTestimonials = (startIndex: number, endIndex: number) => {
       const slicedTestimonials = testimonialDocuments.documents?.slice(startIndex, endIndex + 1);
 
-      return slicedTestimonials?.map((testimonial) => (
+
+      return slicedTestimonials?.map((testimonial:TestimonialDocumentFieldType) => (
         <div className="col-sm-6 mt-3 " key={testimonial?.testimonialId}>
           <div className="card border-0 rounded">
             <div className="comments card-header bg-white container">
@@ -100,7 +110,7 @@ function TestimonialSection(): JSX.Element {
       <div className="d-flex flex-column gap-2">
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {renderTestimonials(0, 3)}
-          {viewAll && renderTestimonials(4, testimonialDocuments.documents.length - 1)}
+          {viewAll ? renderTestimonials(4, testimonialDocuments.documents?.length - 1) : null}
         </div>
       </div>
     );

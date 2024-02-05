@@ -5,11 +5,16 @@ import { databases } from "../../appwriteConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import './BenefitList.scss';
-
+interface BenefitListFieldType {
+  id: number;
+  benefitNumber: number;
+  title: string;
+  description: string;
+}
 function BenefitList() {
   const [viewAll, setViewAll] = useBooleanState(false);
 
-  const [benefitDocuments, setBenefitDocuments] = useState({
+  const [benefitDocuments, setBenefitDocuments] = useState<any>({
     documents: [],
   });
 
@@ -21,7 +26,9 @@ function BenefitList() {
           "BenefitDataCollection",
           [Query.orderAsc("id")]
         );
-        setBenefitDocuments(benefitsResponse);
+        if (benefitsResponse) {
+          setBenefitDocuments(benefitsResponse);
+        }
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -31,9 +38,12 @@ function BenefitList() {
 
   const BenefitSection = () => {
     const renderBenefits = (startIndex: number, endIndex: number) => {
+      
       const slicedBenefits = benefitDocuments.documents?.slice(startIndex, endIndex + 1);
+      
+      if (!slicedBenefits) return null;
 
-      return slicedBenefits?.map((benefit) => (
+      return slicedBenefits?.map((benefit: BenefitListFieldType) => (
         <div className="col-md benefit_sub_container bg-white p-4 rounded ms-1" key={benefit?.id}>
           <div className="number_container d-flex justify-content-end"><h1>{benefit?.benefitNumber}</h1></div>
           <div className="benefit_text_container">
@@ -53,7 +63,7 @@ function BenefitList() {
       <div className="d-flex flex-column gap-2">
         <div className="row gap-1">{renderBenefits(0, 2)}</div>
         <div className="row gap-1">{renderBenefits(3, 5)}</div>
-        {viewAll && <div className="row gap-1">{renderBenefits(6, benefitDocuments.documents.length - 1)}</div>}
+        {viewAll ? (<div className="row gap-1">{renderBenefits(6, benefitDocuments.documents?.length - 1)}</div>): null}
       </div>
     );
   };

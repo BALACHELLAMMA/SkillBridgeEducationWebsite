@@ -6,7 +6,7 @@ import { Query } from "appwrite";
 
 function CourseSection(): JSX.Element {
   const [viewAll, setViewAll] = useToggleState(false);
-  const [courseDataDocuments, setCourseDataDocuments] = useState({documents : []}); 
+  const [courseDataDocuments, setCourseDataDocuments] = useState<any>({documents : []}); 
   const navigate = useNavigate();
  
   useEffect(()=>{
@@ -17,7 +17,10 @@ function CourseSection(): JSX.Element {
           "CourseDataCollection",
           [Query.orderAsc("id")]
         );
-        setCourseDataDocuments(courseResponse);
+        if(courseResponse){
+          setCourseDataDocuments(courseResponse);
+        }
+
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -36,7 +39,8 @@ function CourseSection(): JSX.Element {
 
       for (let i = startIndex; i <= endIndex; i++) {
         const course = courseDataDocuments.documents?.[i];
-
+        if(!course) return null;
+        
         renderedCourses.push(
           <div className="col">
             <div className="card border-0 p-2">
@@ -81,7 +85,7 @@ function CourseSection(): JSX.Element {
       <div className="d-flex flex-column gap-2">
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {renderCourses(0, 5)}
-          {viewAll && renderCourses(6, courseDataDocuments.documents.length - 1)}
+          {viewAll ? renderCourses(6, courseDataDocuments.documents.length - 1) : null}
         </div>
       </div>
     );

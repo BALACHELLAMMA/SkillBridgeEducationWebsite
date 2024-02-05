@@ -40,9 +40,15 @@ const initialState: State = {
   viewAll: false,
 };
 
+interface FaqDocumentFieldType {
+  id: number;
+  answer: string;
+  question: string;
+}
+
 function FAQSection() {
   const [state, dispatch] = useReducer(faqReducer, initialState);
-  const [faqDocuments, setfaqDocuments] = useState({
+  const [faqDocuments, setfaqDocuments] = useState<any>({
     documents: [],
   });
 
@@ -54,7 +60,9 @@ function FAQSection() {
           "FaqDataCollection",
           [Query.orderAsc("id")]
         );
-        setfaqDocuments(faqResponse);
+        if(faqResponse){
+          setfaqDocuments(faqResponse);
+        }
       } catch (error) {
         console.error("List documents error : ", error);
       }
@@ -62,17 +70,23 @@ function FAQSection() {
     fetchFaqData();
   }, []);
 
+  const handleSeeAllFAQ = () => dispatch({ type: 'TOGGLE_VIEW_ALL' });
+
+  const handleOpenCloseButton = (faqId: number) => dispatch({ type: 'TOGGLE_ANSWER', id: faqId });
+
   const renderFAQs = (startIndex: number, endIndex: number) => {
     const slicedFAQs = faqDocuments.documents?.slice(startIndex, endIndex + 1);
-
-    return slicedFAQs?.map((faq) => (
+    if (!slicedFAQs) {
+      return null;
+    }
+    return slicedFAQs?.map((faq: FaqDocumentFieldType) => (
       <div className='FAQ_container card p-1 border' key={faq?.id}>
         <div className="d-flex flex-column  gap-4 rounded align-content-center p-3">
           <div className="d-flex justify-content-between  rounded align-content-center p-2 ">
             <p className="mt-2 fw-medium">{faq?.question}</p>
             <button
               className='open_close_button bg-transparent border-0 '
-              onClick={() => dispatch({ type: 'TOGGLE_ANSWER', id: faq?.id })}
+              onClick={() => handleOpenCloseButton(faq?.id)}
             >
               <FontAwesomeIcon
                 icon={state.showAnswer === faq?.id ? faXmark : faPlus}
@@ -110,7 +124,7 @@ function FAQSection() {
                 <p>Still you have any questions? Contact our Team via support@skillbridge.com</p>
                 <button
                   className="see_all_faq_button btn fw-bold bg-light border p-2 "
-                  onClick={() => dispatch({ type: 'TOGGLE_VIEW_ALL' })}
+                  onClick={handleSeeAllFAQ}
                 >
                   {state.viewAll ? 'See Less' : 'See All FAQ’s'}
                 </button>
@@ -120,7 +134,7 @@ function FAQSection() {
           <div className="col-md-7 d-flex flex-column gap-2">
             <div className="d-flex flex-column gap-2">
               {renderFAQs(0, 4)}
-              {state.viewAll && renderFAQs(5, faqDocuments.documents.length - 1)}
+              {state.viewAll ? renderFAQs(5, faqDocuments.documents?.length - 1): null}
             </div>
           </div>
         </div>

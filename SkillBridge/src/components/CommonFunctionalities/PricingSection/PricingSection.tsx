@@ -4,13 +4,24 @@ import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 import { databases } from "../../../appwriteConfig";
-
+interface PricingDocumentFieldType{
+  planType:string;
+  price:number;
+  feature1:string;
+  feature2:string;
+  feature3:string;
+  feature4:string;
+  feature5:string;
+  feature6:string;
+  feature7:string;
+  category:string;
+}
 function PricingSection() {
   const [monthlyYearly, setMonthlyYearly] = useState("monthly");
   const location = useLocation();
   const currentPathname = location.pathname;
 
-  const [pricingPlanDocuments, setPricingPlanDocuments] = useState<object>({
+  const [pricingPlanDocuments, setPricingPlanDocuments] = useState<any>({
     documents: [],
   });
 
@@ -20,24 +31,26 @@ function PricingSection() {
         "65a0d58f05d18f1fd844",
         "pricingPlanDataCollection"
       );
-      setPricingPlanDocuments(pricingPlanResponse);
+      if(pricingPlanResponse){
+        setPricingPlanDocuments(pricingPlanResponse);
+      }
     };
     fetchPricingData();
   }, []);
 
   console.log(pricingPlanDocuments);
 
-  const renderPricingData = (data) => {
+  const renderPricingData = (data:any) => {
     if (!data) {
       return null;
     }
 
     const filteredPlans = data.documents?.filter(
-      (plan) => plan?.category === monthlyYearly
+      (plan:PricingDocumentFieldType) => plan?.category === monthlyYearly
     );
     console.log(filteredPlans);
 
-    return filteredPlans?.map((plan) => (
+    return filteredPlans?.map((plan:PricingDocumentFieldType) => (
       <div className="col">
         <div className="card border-0 p-2 bg-light">
           <div className="card-body d-flex flex-column">
